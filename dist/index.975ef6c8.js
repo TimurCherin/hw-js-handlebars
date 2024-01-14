@@ -585,9 +585,22 @@ var _bookJsonDefault = parcelHelpers.interopDefault(_bookJson);
 var _templateHbs = require("./template.hbs");
 var _templateHbsDefault = parcelHelpers.interopDefault(_templateHbs);
 const wrap = document.querySelector(".wrap");
-wrap.innerHTML = (0, _templateHbsDefault.default)({
-    books: (0, _bookJsonDefault.default)
-});
+function markup(books) {
+    wrap.innerHTML = (0, _templateHbsDefault.default)({
+        books
+    });
+}
+markup((0, _bookJsonDefault.default));
+const search = document.querySelector(".search");
+function onSearch(event) {
+    const order = event.currentTarget.value;
+    console.log(order);
+    if (order !== "") {
+        const filteredBooks = (0, _bookJsonDefault.default).filter((book)=>book.name.toLowerCase().includes(order.toLowerCase()));
+        markup(filteredBooks);
+    } else markup((0, _bookJsonDefault.default));
+}
+search.addEventListener("change", onSearch);
 
 },{"./book.json":"aNf9G","./template.hbs":"jb7YO","@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3"}],"aNf9G":[function(require,module,exports) {
 module.exports = JSON.parse('[{"name":"The Lord of the Rings","author":"John Ronald Reuel Tolkien","year":1954,"genre":"fantasy"},{"name":"The Da Vinci Code","author":"Dan Brown","year":2003,"genre":"thriller"},{"name":"Harry Potter","author":"J. K. Rowling","year":1997,"genre":"fantasy"}]');
