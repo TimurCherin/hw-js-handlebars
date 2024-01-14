@@ -5,5 +5,8 @@
   },
   "scripts": {
     "start": "parcel src/*.html"
+  },
+  "devDependencies": {
+    "parcel-transformer-hbs": "^1.0.4"
   }
 }
